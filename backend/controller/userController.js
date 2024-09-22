@@ -140,7 +140,10 @@ export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
   const isRegistered = await User.findOne({ email });
   if (isRegistered) {
     return next(
-      new ErrorHandler("Doctor With This Email Already Exists!", 400)
+      new ErrorHandler(
+        `${isRegistered.role} With This Email Already Exists!`,
+        400
+      )
     );
   }
   const cloudinaryResponse = await cloudinary.uploader.upload(
