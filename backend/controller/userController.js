@@ -42,7 +42,7 @@ export const patientRegister = catchAsyncErrors(async (req, res, next) => {
 export const login = catchAsyncErrors(async (req, res, next) => {
   const { email, password, confirmPassword, role } = req.body;
   if (!email || !password || !confirmPassword || !role) {
-    return next(new ErrorHandler("Please Fill Full Form!", 400));
+    return next(new ErrorHandler("Please Provide All Details!", 400));
   }
   if (password !== confirmPassword) {
     return next(
@@ -61,7 +61,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if (role !== user.role) {
     return next(new ErrorHandler(`User Not Found With This Role!`, 400));
   }
-  generateToken(user, "Login Successfully!", 201, res);
+  generateToken(user, "Patient  Login Successfully!", 201, res);
 });
 
 export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
